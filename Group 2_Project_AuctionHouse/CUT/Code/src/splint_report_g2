@@ -1,0 +1,49 @@
+Auction_main.c:7: Include file <unistd.h> matches the name of a POSIX library,
+    but the POSIX library is not being used.  Consider using +posixlib or
+    +posixstrictlib to select the POSIX library, or -warnposix to suppress this
+    message.
+  Header name matches a POSIX header, but the POSIX library is not selected.
+  (Use -warnposixheaders to inhibit warning)
+file_func.c:1: Include file <termios.h> matches the name of a POSIX library,
+    but the POSIX library is not being used.  Consider using +posixlib or
+    +posixstrictlib to select the POSIX library, or -warnposix to suppress this
+    message.
+< Location unknown >: Field name reused: 
+  Code cannot be parsed.  For help on parse errors, see splint -help
+  parseerrors. (Use -syntax to inhibit warning)
+< Location unknown >: Previous use of 
+AuctionHouse_Item_Func.c: (in function add_item)
+AuctionHouse_Item_Func.c:12:8: Test expression for while not boolean, type int:
+                                  1
+  Test expression type is not boolean or int. (Use -predboolint to inhibit
+  warning)
+AuctionHouse_Item_Func.c:15:23: Arrow access from possibly null pointer
+                                   item_new: item_new->item_code
+  A possibly null pointer is dereferenced.  Value is either the result of a
+  function which may return null (in which case, code should check it is not
+  null), or a global, parameter or structure field declared with the null
+  qualifier. (Use -nullderef to inhibit warning)
+   AuctionHouse_Item_Func.c:11:11: Storage item_new may become null
+AuctionHouse_Item_Func.c:15:3: Return value (type int) ignored:
+                                  scanf("%d", &ite...
+  Result returned by function call is not used. If this is intended, can cast
+  result to (void) to eliminate message. (Use -retvalint to inhibit warning)
+AuctionHouse_Item_Func.c:23:8: Variable ptr shadows outer declaration
+  An outer declaration is shadowed by the local declaration. (Use -shadow to
+  inhibit warning)
+   auctionheader.h:24:5: Previous definition of ptr: it *
+AuctionHouse_Item_Func.c:24:18: Left operand of && is non-boolean (it *):
+    (ptr) && ptr->item_code != item_new->item_code
+  The operand of a boolean operator is not a boolean. Use +ptrnegate to allow !
+  to be used on pointers. (Use -boolops to inhibit warning)
+AuctionHouse_Item_Func.c:34:8: Test expression for while not boolean, type int:
+                                  1
+AuctionHouse_Item_Func.c:37:22: Arrow access from possibly null pointer
+                                   item_new: item_new->item_name
+   AuctionHouse_Item_Func.c:11:11: Storage item_new may become null
+AuctionHouse_Item_Func.c:37:3: Return value (type int) ignored:
+                                  scanf("%s", item...
+AuctionHouse_Item_Func.c:38:11: Variable len initialized to type size_t,
+                                   expects int: strlen(item_new->item_name)
+  To allow arbitrary integral types to match any integral type, use
+  +matchanyintegral.

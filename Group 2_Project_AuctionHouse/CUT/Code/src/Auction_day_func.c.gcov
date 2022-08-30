@@ -1,0 +1,222 @@
+        -:    0:Source:Auction_day_func.c
+        -:    0:Graph:Auction_main.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#include <stdio.h>
+        -:    2:#include <pthread.h>
+        -:    3:#include <stdlib.h>
+        -:    4:#include <string.h>
+        -:    5:#include <ctype.h>
+        -:    6:#include "auctionheader.h"
+        -:    7:
+        -:    8:pthread_mutex_t accum_mutex=PTHREAD_MUTEX_INITIALIZER;
+        -:    9:
+function auction called 0 returned 0% blocks executed 0%
+    #####:   10:void *auction()
+        -:   11:{
+        -:   12:
+    #####:   13:	auction_day();
+call    0 never executed
+    #####:   14:}
+        -:   15:
+        -:   16:
+function auction_day called 0 returned 0% blocks executed 0%
+    #####:   17:int auction_day()
+        -:   18:{
+        -:   19:	aday *a_last;
+    #####:   20:	a_new = (aday*)calloc(1,sizeof(aday));
+        -:   21:	double highest_bid;
+        -:   22:	double amount, bid_pay;
+    #####:   23:	int bid=0, first_bid=0, second_bid=0, third_bid=0;
+        -:   24:	while(1)
+        -:   25:	{
+    #####:   26:		printf("\nEnter the item code for bidding :");
+call    0 never executed
+    #####:   27:		scanf("%d", &a_new->item_code);
+call    0 never executed
+    #####:   28:		if(start)
+branch  0 never executed
+branch  1 never executed
+        -:   29:		{
+        -:   30:			it *ptr;
+    #####:   31:			for(ptr=start;(ptr)&&ptr->item_code!=a_new->item_code;ptr=ptr->next);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   32:			if(!ptr)
+branch  0 never executed
+branch  1 never executed
+        -:   33:			{
+    #####:   34:				printf("\nEntered item code is invalid\n");
+call    0 never executed
+    #####:   35:				continue;
+        -:   36:			}
+        -:   37:			else
+        -:   38:			{
+    #####:   39:				strcpy(a_new->item_name,ptr->item_name);
+    #####:   40:				highest_bid=ptr->item_price;
+    #####:   41:				break;
+        -:   42:			}
+        -:   43:		}
+        -:   44:	}
+    #####:   45:	for(int i=1;i<=3;i++)
+branch  0 never executed
+branch  1 never executed
+        -:   46:	{
+    #####:   47:	pthread_mutex_lock(&accum_mutex);
+call    0 never executed
+        -:   48:		while(1)
+    #####:   49:		{
+    #####:   50:			printf("\nEnter bidder id :");
+call    0 never executed
+    #####:   51:			scanf("%d", &bid);
+call    0 never executed
+    #####:   52:			if (bid==0)
+branch  0 never executed
+branch  1 never executed
+        -:   53:			{
+    #####:   54:				printf("Bidder id cannot be zero or blank.Enter the valid bidder id\n");
+call    0 never executed
+    #####:   55:				continue;
+        -:   56:			}
+        -:   57:			bder *ptr;
+    #####:   58:			for(ptr=start1; (ptr) && ptr->bidder_id!=bid ;ptr=ptr->next1);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   59:			if(!ptr)
+branch  0 never executed
+branch  1 never executed
+        -:   60:			{
+    #####:   61:				printf("Entered bidder id is invalid. Enter the valid bidder id\n");
+call    0 never executed
+    #####:   62:				continue;
+        -:   63:			}
+        -:   64:			else
+        -:   65:			{
+    #####:   66:				if(i==1)
+branch  0 never executed
+branch  1 never executed
+        -:   67:				{
+    #####:   68:					first_bid=bid;
+    #####:   69:					break;
+        -:   70:				}
+    #####:   71:				else if(i==2)
+branch  0 never executed
+branch  1 never executed
+        -:   72:				{
+    #####:   73:					if(bid==first_bid)
+branch  0 never executed
+branch  1 never executed
+        -:   74:					{
+    #####:   75:						printf("Same bidder id cannot be accepted. Re-enter the bidder id. \n");
+call    0 never executed
+    #####:   76:						continue;
+        -:   77:					}
+        -:   78:					else
+        -:   79:					{
+    #####:   80:						second_bid=bid;
+    #####:   81:						break;
+        -:   82:					}
+        -:   83:						
+        -:   84:				}
+        -:   85:				else 
+        -:   86:				{
+        -:   87:
+        -:   88:					
+    #####:   89:					if(bid==first_bid || bid==second_bid)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:   90:					{
+    #####:   91:						printf("Same bidder id cannot be accepted. Re-ener the bidder id.\n");
+call    0 never executed
+    #####:   92:						continue;
+        -:   93:					}
+        -:   94:					else
+        -:   95:					{
+    #####:   96:						strcpy(a_new->bid_win_name,ptr->bidder_name);
+    #####:   97:						bid_pay=ptr->Security_Deposit;
+    #####:   98:						third_bid=bid;
+    #####:   99:						break;
+        -:  100:					}
+        -:  101:				}
+        -:  102:			}
+        -:  103:			}
+        -:  104:		
+    #####:  105:	pthread_mutex_unlock(&accum_mutex);
+call    0 never executed
+        -:  106:		while(1)
+        -:  107:		{
+    #####:  108:			if(i==1)
+branch  0 never executed
+branch  1 never executed
+    #####:  109:				printf("Base price of item starts from %lf ",highest_bid);
+call    0 never executed
+    #####:  110:			printf("\nEnter the bidding amount: ");
+call    0 never executed
+    #####:  111:			scanf("%lf", &amount);
+call    0 never executed
+    #####:  112:			if (amount<=highest_bid)
+branch  0 never executed
+branch  1 never executed
+        -:  113:			{
+    #####:  114:				printf("Amount should be greater than %lf\n",highest_bid);
+call    0 never executed
+    #####:  115:			       continue;
+        -:  116:			}
+        -:  117:			else
+        -:  118:			{
+    #####:  119:				highest_bid=amount;
+    #####:  120:				break;
+        -:  121:			}
+        -:  122:
+        -:  123:	}
+        -:  124:	}
+    #####:  125:	a_new->bidder_id=third_bid;
+    #####:  126:        a_new->bid_win_amount=highest_bid;
+    #####:  127:	if(bid_pay>highest_bid)
+branch  0 never executed
+branch  1 never executed
+        -:  128:	{
+    #####:  129:		a_new->r_deposit=(bid_pay-highest_bid);
+    #####:  130:		a_new->bid_netpayable=0;
+    #####:  131:		printf("\n\tSecurity Deposit of bidder id %d is %lf  more than the payable amount so remaining security deposit is %7.2lf\n", third_bid,bid_pay, a_new->r_deposit);
+call    0 never executed
+        -:  132:	}
+    #####:  133:	else if(bid_pay==highest_bid)
+branch  0 never executed
+branch  1 never executed
+        -:  134:	{
+    #####:  135:		a_new->bid_netpayable=(bid_pay-highest_bid);
+    #####:  136:		printf("\n\tSecurity deposit of winning bidder id %d is same as net payable amount so Net Payable amount is 0Rs.\n", third_bid);
+call    0 never executed
+        -:  137:
+        -:  138:	}
+        -:  139:	else
+    #####:  140:		a_new->bid_netpayable=(highest_bid-bid_pay);
+    #####:  141:		a_new->r_deposit;
+    #####:  142:		printf("\n\tNet payable amount by the bidder is %7.2lf\n", a_new->bid_netpayable);
+call    0 never executed
+    #####:  143:	printf("\n\tHighest bidding amount is %lf\n", a_new->bid_win_amount);
+call    0 never executed
+    #####:  144:	if(!a_start)
+branch  0 never executed
+branch  1 never executed
+        -:  145:	{
+    #####:  146:		a_start=a_last=a_new;
+    #####:  147:		a_new->a_next=NULL;
+        -:  148:	}
+        -:  149:	else
+        -:  150:	{
+    #####:  151:		a_last->a_next=a_new;
+    #####:  152:		a_new->a_next=NULL;
+    #####:  153:		a_last=a_new;
+        -:  154:	}
+        -:  155:
+        -:  156:	
+    #####:  157:}
+        -:  158:

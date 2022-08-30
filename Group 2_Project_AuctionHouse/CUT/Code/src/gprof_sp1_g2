@@ -1,0 +1,52 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+ no time accumulated
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00        1     0.00     0.00  auction_day
+  0.00      0.00     0.00        1     0.00     0.00  auction_file_to_list
+  0.00      0.00     0.00        1     0.00     0.00  auction_list_to_file
+  0.00      0.00     0.00        1     0.00     0.00  bidder_file_to_list
+  0.00      0.00     0.00        1     0.00     0.00  bidder_list_to_file
+  0.00      0.00     0.00        1     0.00     0.00  display_item
+  0.00      0.00     0.00        1     0.00     0.00  item_file_to_list
+  0.00      0.00     0.00        1     0.00     0.00  item_list_to_file
+
+			Call graph
+
+
+granularity: each sample hit covers 2 byte(s) no time propagated
+
+index % time    self  children    called     name
+                0.00    0.00       1/1           auction [12]
+[1]      0.0    0.00    0.00       1         auction_day [1]
+-----------------------------------------------
+                0.00    0.00       1/1           main [24]
+[2]      0.0    0.00    0.00       1         auction_file_to_list [2]
+-----------------------------------------------
+                0.00    0.00       1/1           main [24]
+[3]      0.0    0.00    0.00       1         auction_list_to_file [3]
+-----------------------------------------------
+                0.00    0.00       1/1           main [24]
+[4]      0.0    0.00    0.00       1         bidder_file_to_list [4]
+-----------------------------------------------
+                0.00    0.00       1/1           main [24]
+[5]      0.0    0.00    0.00       1         bidder_list_to_file [5]
+-----------------------------------------------
+                0.00    0.00       1/1           main [24]
+[6]      0.0    0.00    0.00       1         display_item [6]
+-----------------------------------------------
+                0.00    0.00       1/1           main [24]
+[7]      0.0    0.00    0.00       1         item_file_to_list [7]
+-----------------------------------------------
+                0.00    0.00       1/1           main [24]
+[8]      0.0    0.00    0.00       1         item_list_to_file [8]
+-----------------------------------------------
+
+Index by function name
+
+   [1] auction_day             [4] bidder_file_to_list     [7] item_file_to_list
+   [2] auction_file_to_list    [5] bidder_list_to_file     [8] item_list_to_file
+   [3] auction_list_to_file    [6] display_item

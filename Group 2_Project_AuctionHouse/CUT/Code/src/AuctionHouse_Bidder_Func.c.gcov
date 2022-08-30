@@ -1,0 +1,362 @@
+        -:    0:Source:AuctionHouse_Bidder_Func.c
+        -:    0:Graph:Auction_main.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#include <stdio.h>
+        -:    2:#include <string.h>
+        -:    3:#include <stdlib.h>
+        -:    4:#include <ctype.h>
+        -:    5:#include "auctionheader.h"
+        -:    6:
+        -:    7:
+        -:    8:/**********************************************add_bidder() Adds Bidder details to the Reg_Bidder file********************************************/
+        -:    9:
+        -:   10:
+function add_bidder called 0 returned 0% blocks executed 0%
+    #####:   11:int add_bidder()
+        -:   12:
+        -:   13:{
+    #####:   14:	new1=(bder*)malloc(sizeof(bder));
+        -:   15:	while(1)
+        -:   16:	{
+    #####:   17:		printf("\nEnter Bidder id (ID should be in the range 100 to 200):\n");
+call    0 never executed
+    #####:   18:		scanf("%d",&new1->bidder_id);
+call    0 never executed
+    #####:   19:		if(new1->bidder_id<100 || new1->bidder_id>200)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:   20:		{
+    #####:   21:			printf("\nOut of range\n");
+call    0 never executed
+    #####:   22:			continue;
+        -:   23:		}
+    #####:   24:		if(start1)
+branch  0 never executed
+branch  1 never executed
+        -:   25:		{
+        -:   26:			bder *ptr;
+    #####:   27:			for(ptr=start1;(ptr)  && ptr->bidder_id!=new1->bidder_id;ptr=ptr->next1);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   28:			if(ptr)
+branch  0 never executed
+branch  1 never executed
+        -:   29:			{
+    #####:   30:				printf("\n %d Bidder id already exists. Enter other Bidder id",new1->bidder_id);
+call    0 never executed
+    #####:   31:				continue;
+        -:   32:			}
+        -:   33:else
+    #####:   34:				break;
+        -:   35:		}
+        -:   36:	}
+        -:   37:	while(1)
+    #####:   38:	{
+    #####:   39:		printf("\nEnter Bidder name:\n");
+call    0 never executed
+    #####:   40:		scanf("%s",new1->bidder_name);
+call    0 never executed
+    #####:   41:		int len=strlen(new1->bidder_name);
+    #####:   42:			if(len<5 || len>19)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:   43:			{
+    #####:   44:				printf("\nInvalid length should be in range 5-19\n");
+call    0 never executed
+    #####:   45:				continue;
+        -:   46:			}
+    #####:   47:			int flag=0;
+    #####:   48:			for(int i=0;new1->bidder_name[i]!='\0';i++)
+branch  0 never executed
+branch  1 never executed
+        -:   49:			{
+    #####:   50:				if(!isalpha(new1->bidder_name[i]))
+branch  0 never executed
+branch  1 never executed
+        -:   51:				{
+    #####:   52:					flag=1;
+    #####:   53:					break;
+        -:   54:				}
+        -:   55:			}
+    #####:   56:			if(flag==1)
+branch  0 never executed
+branch  1 never executed
+        -:   57:			{
+    #####:   58:				printf("\nName should have only alphabets\n");
+call    0 never executed
+    #####:   59:				continue;
+        -:   60:			}
+        -:   61:			else
+    #####:   62:				break;
+        -:   63:	}
+        -:   64:
+        -:   65:	while(1)
+    #####:   66:	{
+        -:   67:
+    #####:   68:		printf("\nEnter bidder pan no:\n");
+call    0 never executed
+    #####:   69:		scanf("%s", new1->bidder_pan);
+call    0 never executed
+    #####:   70:		int len=strlen(new1->bidder_pan);
+    #####:   71:			if(len!=6)
+branch  0 never executed
+branch  1 never executed
+        -:   72:			{
+    #####:   73:				printf("\nPAN card should have 6 characters\n");
+call    0 never executed
+    #####:   74:				continue;
+        -:   75:			}
+    #####:   76:			int flag=0;
+    #####:   77:			for(int i=0;new1->bidder_pan[i]!='\0';i++)
+branch  0 never executed
+branch  1 never executed
+        -:   78:			{
+    #####:   79:				if(islower(new1->bidder_pan[i]))
+branch  0 never executed
+branch  1 never executed
+        -:   80:				{
+    #####:   81:					flag=1;
+    #####:   82:					break;
+        -:   83:				}
+        -:   84:			}
+    #####:   85:			if(flag==1)
+branch  0 never executed
+branch  1 never executed
+        -:   86:			{
+    #####:   87:				printf("\nPAN no. should only contain UPPERCASE characters\n");
+call    0 never executed
+    #####:   88:				continue;
+        -:   89:			}
+        -:   90:			else
+    #####:   91:				break;
+        -:   92:	}
+        -:   93:	while(1)
+    #####:   94:	{
+    #####:   95:		printf("\nEnter Deposit status:[y/n]\n");
+call    0 never executed
+    #####:   96:		scanf("%s",&new1->Deposit_status);
+call    0 never executed
+    #####:   97:			int len=sizeof(new1->Deposit_status);
+    #####:   98:			if(len!=1)
+branch  0 never executed
+branch  1 never executed
+        -:   99:			{
+    #####:  100:				printf("\nDeposit status should be either y or n\n");
+call    0 never executed
+    #####:  101:				continue;
+        -:  102:			}
+        -:  103:			
+    #####:  104:			if(new1->Deposit_status=='y' || new1->Deposit_status=='n')
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  105:			{
+        -:  106:				break;
+        -:  107:			}
+        -:  108:			else
+        -:  109:			{
+    #####:  110:				printf("\nDeposit status should be either y or n\n");
+call    0 never executed
+    #####:  111:				continue;
+        -:  112:			}
+        -:  113:	
+        -:  114:	}
+        -:  115:	while(1)
+        -:  116:	{
+    #####:  117:		printf("\nEnter Security Deposit:\n");
+call    0 never executed
+    #####:  118:		scanf("%lf",&new1->Security_Deposit);
+call    0 never executed
+    #####:  119:			if(new1->Security_Deposit < 100)
+branch  0 never executed
+branch  1 never executed
+        -:  120:			{
+    #####:  121:				printf("\n\tMinimum security deposit should be 100 Rs.\n");
+call    0 never executed
+    #####:  122:				continue;
+        -:  123:			}
+        -:  124:			else
+    #####:  125:				break;
+        -:  126:		
+        -:  127:	}
+        -:  128:
+    #####:  129:		if(start1==NULL)
+branch  0 never executed
+branch  1 never executed
+        -:  130:		{
+    #####:  131:			start1=new1;
+    #####:  132:			new1->next1=NULL;
+        -:  133:		}
+    #####:  134:		else if(new1->bidder_id<start1->bidder_id)
+branch  0 never executed
+branch  1 never executed
+        -:  135:		{
+    #####:  136:			new1->next1=start1;
+    #####:  137:			start1=new1;
+        -:  138:		}
+        -:  139:		else
+        -:  140:		{
+    #####:  141:			for(ptr1=start1;(ptr1) && ptr1->bidder_id<new1->bidder_id;prev1=ptr1,ptr1=ptr1->next1);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  142:			prev1->next1=new1;
+    #####:  143:			new1->next1=ptr1;
+        -:  144:		}
+    #####:  145:}
+        -:  146:
+        -:  147:
+        -:  148:
+        -:  149:/*****************************************view_bidder() Display the  Bidder details from  Reg_Bidder file*****************************************/
+        -:  150:
+function view_bidder called 0 returned 0% blocks executed 0%
+    #####:  151:int view_bidder()
+        -:  152:{
+    #####:  153:	if(start1)
+branch  0 never executed
+branch  1 never executed
+        -:  154:	{
+    #####:  155:		printf("\nBIDDER ID             BIDDER NAME           BIDDER PAN       DEPOSIT STATUS         SECURITY DEPOSIT\n");
+call    0 never executed
+    #####:  156:		for(bder *ptr = start1; (ptr); ptr=ptr->next1)
+branch  0 never executed
+branch  1 never executed
+        -:  157:		{
+    #####:  158:			printf("\n   %d        %15s        %20s        %10c          %15lf\n",ptr->bidder_id,ptr->bidder_name,ptr->bidder_pan,ptr->Deposit_status,ptr->Security_Deposit);
+call    0 never executed
+        -:  159:		}
+        -:  160:	}
+        -:  161:	else
+        -:  162:	{
+    #####:  163:		printf("Bidder list not exist");
+call    0 never executed
+    #####:  164:		return(1);
+        -:  165:	}
+    #####:  166:}
+        -:  167:
+        -:  168:/*****************************************edit_bidder() Edit the  Bidder details from  Reg_Bidder file********************************************/
+        -:  169:
+function edit_bidder called 0 returned 0% blocks executed 0%
+    #####:  170:int edit_bidder()
+        -:  171:
+        -:  172:{
+    #####:  173:	if(!start1)
+branch  0 never executed
+branch  1 never executed
+        -:  174:	{
+        -:  175:
+    #####:  176:		printf("\n\tBidder file is empty\n");
+call    0 never executed
+    #####:  177:		return(1);
+        -:  178:	}
+        -:  179:	int menu;
+    #####:  180:	printf("Enter bidder id:\n");
+call    0 never executed
+    #####:  181:	scanf("%d",&menu);
+call    0 never executed
+    #####:  182:	for(ptr1=start1;(ptr1)&&(ptr1->bidder_id!=menu);ptr1=ptr1->next1);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  183:	if(ptr1==NULL)
+branch  0 never executed
+branch  1 never executed
+        -:  184:	{
+    #####:  185:		printf("\n%d bidder id not found\n",menu);
+call    0 never executed
+    #####:  186:		return(1);
+        -:  187:	}
+        -:  188:	else{
+    #####:  189:		printf("\n\tOld bidder name is  %s  and bidder pan number is %s \n",ptr1->bidder_name,ptr1->bidder_pan);
+call    0 never executed
+    #####:  190:		printf("\n\tEnter new bidder name and bidder pan number :");
+call    0 never executed
+    #####:  191:		scanf("%s %s",ptr1->bidder_name,ptr1->bidder_pan);
+call    0 never executed
+    #####:  192:		return(1);
+        -:  193:	}
+        -:  194:}
+        -:  195:
+        -:  196:/*****************************************del_bidder() Delete the  Bidder details from  Reg_Bidder file*******************************************/
+        -:  197:
+function del_bidder called 0 returned 0% blocks executed 0%
+    #####:  198:int del_bidder()
+        -:  199:{
+    #####:  200:	if(!start1)
+branch  0 never executed
+branch  1 never executed
+        -:  201:	{
+        -:  202:
+    #####:  203:		printf("\n\t Bidder file is empty\n");
+call    0 never executed
+    #####:  204:		return(1);
+        -:  205:	}
+        -:  206:	int menu;
+    #####:  207:	printf("\n\tEnter the bidder id:");
+call    0 never executed
+    #####:  208:	scanf("%d",&menu);
+call    0 never executed
+    #####:  209:	if(menu==start1->bidder_id)
+branch  0 never executed
+branch  1 never executed
+        -:  210:	{
+    #####:  211:		ptr1=start1;
+    #####:  212:		start1=start1->next1;
+    #####:  213:		free(ptr1);
+        -:  214:	}
+        -:  215:	else
+        -:  216:	{
+    #####:  217:		for(ptr1=start1;(ptr1) &&ptr1->bidder_id!=menu;prev1=ptr1,ptr1=ptr1->next1);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  218:		if(ptr1==NULL)
+branch  0 never executed
+branch  1 never executed
+        -:  219:		{
+    #####:  220:			printf("\n\tBidder not found\n");
+call    0 never executed
+    #####:  221:			return(1);
+        -:  222:		}
+    #####:  223:		prev1->next1=ptr1->next1;
+    #####:  224:		free(ptr1);
+        -:  225:	}
+        -:  226:
+    #####:  227:}
+        -:  228:
+        -:  229:
+        -:  230:
+        -:  231:/**********************************************display_bidding_report() displays the winner details********************************************/
+        -:  232:
+function display_bidding_report called 0 returned 0% blocks executed 0%
+    #####:  233:int display_bidding_report()
+        -:  234:{
+        -:  235:
+    #####:  236:	if(a_start)
+branch  0 never executed
+branch  1 never executed
+        -:  237:	{
+    #####:  238:		printf("\n                       BIDDING REPORT                             \n");
+call    0 never executed
+    #####:  239:		printf("\nITEM CODE     ITEM NAME     BIDDING WINNER         BIDDING AMOUNT\n");
+call    0 never executed
+    #####:  240:		for(aday *ptr = a_start; (ptr); ptr=ptr->a_next)
+branch  0 never executed
+branch  1 never executed
+        -:  241:		{
+    #####:  242:			printf("\n%d         %s            %s                 %lf\n",ptr->item_code,ptr->item_name,ptr->bid_win_name,ptr->bid_win_amount);
+call    0 never executed
+        -:  243:		}
+        -:  244:	}
+    #####:  245:}

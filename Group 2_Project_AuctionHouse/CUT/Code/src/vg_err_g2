@@ -1,0 +1,66 @@
+==293124== Memcheck, a memory error detector
+==293124== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==293124== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==293124== Command: ./a.out
+==293124== 
+==293124== Syscall param write(buf) points to uninitialised byte(s)
+==293124==    at 0x495CF33: write (write.c:26)
+==293124==    by 0x48EE664: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1181)
+==293124==    by 0x48ED9D5: new_do_write (fileops.c:449)
+==293124==    by 0x48EF708: _IO_new_do_write (fileops.c:426)
+==293124==    by 0x48EF708: _IO_do_write@@GLIBC_2.2.5 (fileops.c:423)
+==293124==    by 0x48EEFEF: _IO_file_close_it@@GLIBC_2.2.5 (fileops.c:136)
+==293124==    by 0x48E2375: fclose@@GLIBC_2.2.5 (iofclose.c:53)
+==293124==    by 0x10A5E2: bidder_list_to_file (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124==    by 0x10B1D0: main (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124==  Address 0x4a524dd is 269 bytes inside a block of size 4,096 alloc'd
+==293124==    at 0x483877F: malloc (vg_replace_malloc.c:307)
+==293124==    by 0x48E213B: _IO_file_doallocate (filedoalloc.c:101)
+==293124==    by 0x48F0A4F: _IO_doallocbuf (genops.c:347)
+==293124==    by 0x48F0A4F: _IO_doallocbuf (genops.c:342)
+==293124==    by 0x48EFBF7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==293124==    by 0x48EECDD: _IO_new_file_xsputn (fileops.c:1244)
+==293124==    by 0x48EECDD: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==293124==    by 0x48E35BC: fwrite (iofwrite.c:39)
+==293124==    by 0x10A5B5: bidder_list_to_file (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124==    by 0x10B1D0: main (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124== 
+==293124== Invalid read of size 4
+==293124==    at 0x48E3521: fwrite (iofwrite.c:37)
+==293124==    by 0x10A8FC: item_list_to_file (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124==    by 0x10B1E6: main (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==293124== 
+==293124== 
+==293124== Process terminating with default action of signal 11 (SIGSEGV)
+==293124==  Access not within mapped region at address 0x0
+==293124==    at 0x48E3521: fwrite (iofwrite.c:37)
+==293124==    by 0x10A8FC: item_list_to_file (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124==    by 0x10B1E6: main (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124==  If you believe this happened as a result of a stack
+==293124==  overflow in your program's main thread (unlikely but
+==293124==  possible), you can try to increase the size of the
+==293124==  main thread stack using the --main-stacksize= flag.
+==293124==  The main thread stack size used in this run was 8388608.
+==293124== 
+==293124== HEAP SUMMARY:
+==293124==     in use at exit: 56,088 bytes in 692 blocks
+==293124==   total heap usage: 700 allocs, 8 frees, 75,464 bytes allocated
+==293124== 
+==293124== 64 bytes in 1 blocks are definitely lost in loss record 4 of 11
+==293124==    at 0x483877F: malloc (vg_replace_malloc.c:307)
+==293124==    by 0x10A868: bidder_file_to_list (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124==    by 0x10AED6: main (in /home/cguser28/Project_AuctionHouse/CUT/Code/src/a.out)
+==293124== 
+==293124== LEAK SUMMARY:
+==293124==    definitely lost: 64 bytes in 1 blocks
+==293124==    indirectly lost: 0 bytes in 0 blocks
+==293124==      possibly lost: 0 bytes in 0 blocks
+==293124==    still reachable: 56,024 bytes in 691 blocks
+==293124==         suppressed: 0 bytes in 0 blocks
+==293124== Reachable blocks (those to which a pointer was found) are not shown.
+==293124== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==293124== 
+==293124== Use --track-origins=yes to see where uninitialised values come from
+==293124== For lists of detected and suppressed errors, rerun with: -s
+==293124== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)

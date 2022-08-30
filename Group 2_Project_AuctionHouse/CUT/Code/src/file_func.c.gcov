@@ -1,0 +1,342 @@
+        -:    0:Source:file_func.c
+        -:    0:Graph:Auction_main.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#include <stdio.h>
+        -:    2:#include <termios.h>
+        -:    3:#include <stdlib.h>
+        -:    4:#include <ctype.h>
+        -:    5:#include <string.h>
+        -:    6:#include "auctionheader.h"
+        -:    7:#define MAXPW 32
+        -:    8:FILE *fp;
+        -:    9:
+function bidder_list_to_file called 0 returned 0% blocks executed 0%
+    #####:   10:int bidder_list_to_file()
+        -:   11:{
+        -:   12:
+    #####:   13:	fp=fopen("Reg_Bidder","w");
+call    0 never executed
+    #####:   14:	for(ptr1=start1;(ptr1);ptr1= ptr1 ->next1)
+branch  0 never executed
+branch  1 never executed
+        -:   15:	{
+    #####:   16:		fwrite(ptr1,sizeof(bder),1,fp);
+call    0 never executed
+        -:   17:	}
+    #####:   18:	fclose(fp);
+call    0 never executed
+    #####:   19:}
+        -:   20:
+function auction_list_to_file called 0 returned 0% blocks executed 0%
+    #####:   21:int auction_list_to_file()
+        -:   22:{
+    #####:   23:	fp=fopen("auction","wb");
+call    0 never executed
+    #####:   24:	for(a_ptr=a_start;(a_ptr);(a_ptr)=a_ptr->a_next)
+branch  0 never executed
+branch  1 never executed
+        -:   25:	{
+    #####:   26:		fwrite(a_ptr,sizeof(aday),1,fp);
+call    0 never executed
+        -:   27:	}
+    #####:   28:	fclose(fp);
+call    0 never executed
+    #####:   29:}
+        -:   30:
+function auction_file_to_list called 0 returned 0% blocks executed 0%
+    #####:   31:int auction_file_to_list()
+        -:   32:{
+        -:   33:	aday *a_last;
+    #####:   34:	if((fp=fopen("auction","rb"))==NULL)
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   35:	{
+    #####:   36:		return(1);
+        -:   37:        }
+    #####:   38:	a_new=(aday *)malloc(sizeof(aday));
+    #####:   39:	fread(a_new,sizeof(aday),1,fp);
+call    0 never executed
+    #####:   40:	while(!feof(fp))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   41:        {
+    #####:   42:		if(!a_start)
+branch  0 never executed
+branch  1 never executed
+        -:   43:		{
+    #####:   44:			a_start=a_last=a_new;
+    #####:   45:			a_new->a_next=NULL;
+        -:   46:		}
+        -:   47:		else
+        -:   48:		{
+    #####:   49:			a_last->a_next=a_new;
+    #####:   50:	         	a_last=a_new;
+    #####:   51:			a_new->a_next=NULL;
+        -:   52:		}
+        -:   53:	
+    #####:   54:		a_new=(aday *)malloc(sizeof(aday));
+    #####:   55:		fread(a_new,sizeof(aday),1,fp);
+call    0 never executed
+        -:   56:	}
+    #####:   57:}
+function bidder_file_to_list called 0 returned 0% blocks executed 0%
+    #####:   58:int bidder_file_to_list()
+        -:   59:{
+        -:   60:	bder *last1;
+        -:   61:	//FILE *fp;
+    #####:   62:	if((fp=fopen("Reg_Bidder", "r"))==NULL)
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   63:	{
+    #####:   64:		printf("\nBidder file doesn't exist");
+call    0 never executed
+    #####:   65:		return(1);
+        -:   66:	}
+    #####:   67:	new1=(bder *)malloc(sizeof(bder));
+    #####:   68:	fread(new1,sizeof(bder),1,fp);
+call    0 never executed
+    #####:   69:	while(!feof(fp))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   70:	{
+    #####:   71:		if(!start1)
+branch  0 never executed
+branch  1 never executed
+        -:   72:		{
+    #####:   73:			start1=last1=new1;
+    #####:   74:			new1 ->next1=NULL;
+        -:   75:		}
+        -:   76:		else
+        -:   77:		{
+    #####:   78:			last1 ->next1=new1;
+    #####:   79:		      	last1=new1;
+    #####:   80:			new1 ->next1=NULL;
+        -:   81:		}
+    #####:   82:		new1=(bder *)malloc(sizeof(bder));
+    #####:   83:		fread(new1,sizeof(bder),1,fp);
+call    0 never executed
+        -:   84:	}
+    #####:   85:}
+        -:   86:
+        -:   87:
+        -:   88:
+        -:   89:
+        -:   90:
+function item_list_to_file called 0 returned 0% blocks executed 0%
+    #####:   91:int item_list_to_file()
+        -:   92:{
+    #####:   93:	fp=fopen("Item_to_be_auctioned","w");
+call    0 never executed
+    #####:   94:	for(ptr=start;(ptr);ptr=ptr->next)
+branch  0 never executed
+branch  1 never executed
+        -:   95:	{
+    #####:   96:		fwrite(ptr,sizeof(it),1,fp);
+call    0 never executed
+        -:   97:	}
+    #####:   98:	fclose(fp);
+call    0 never executed
+    #####:   99:}
+        -:  100:
+        -:  101:
+        -:  102:
+        -:  103:
+function item_file_to_list called 0 returned 0% blocks executed 0%
+    #####:  104:int item_file_to_list()
+        -:  105:{
+        -:  106:	it *last;
+        -:  107:	//FILE *fp
+    #####:  108:	if((fp=fopen("Item_to_be_auctioned","r"))==NULL)
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  109:	{
+    #####:  110:		printf("\nItem file not present");
+call    0 never executed
+    #####:  111:		return(1);
+        -:  112:	}
+    #####:  113:	item_new=(it *)malloc(sizeof(it));
+    #####:  114:	fread(item_new,sizeof(it),1,fp);
+call    0 never executed
+    #####:  115:	while(!feof(fp))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  116:	{
+    #####:  117:		if(!start)
+branch  0 never executed
+branch  1 never executed
+        -:  118:		{
+    #####:  119:			start=last=item_new;
+    #####:  120:			item_new->next=NULL;
+        -:  121:		}
+        -:  122:		else
+        -:  123:		{
+    #####:  124:			last->next=item_new;
+    #####:  125:			last=item_new;
+    #####:  126:			item_new->next=NULL;
+        -:  127:		}
+    #####:  128:		item_new=(it *)malloc(sizeof(it));
+    #####:  129:		fread(item_new,sizeof(it),1,fp);
+call    0 never executed
+        -:  130:	}
+    #####:  131:}
+        -:  132:
+function getpasswd called 0 returned 0% blocks executed 0%
+    #####:  133:ssize_t getpasswd (char **pw, size_t sz, int mask, FILE *fp)
+        -:  134:{
+    #####:  135:	if (!pw || !sz || !fp)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:  136:	       	return -1;       /* validate input   */
+        -:  137:#ifdef MAXPW
+    #####:  138:	if (sz > MAXPW)
+branch  0 never executed
+branch  1 never executed
+    #####:  139:	       	sz = MAXPW;
+        -:  140:#endif
+    #####:  141:	if (*pw == NULL)
+branch  0 never executed
+branch  1 never executed
+        -:  142:       	{              /* reallocate if no address */
+    #####:  143:		void *tmp = realloc (*pw, sz * sizeof **pw);
+    #####:  144:		if (!tmp)
+branch  0 never executed
+branch  1 never executed
+    #####:  145:			return -1;
+    #####:  146:		memset (tmp, 0, sz);    /* initialize memory to 0   */
+    #####:  147:		*pw =  (char*) tmp;
+        -:  148:	}
+        -:  149:
+    #####:  150:	size_t idx = 0;         /* index, number of chars in read   */
+    #####:  151:	int c = 0;
+        -:  152:
+        -:  153:	struct termios old_kbd_mode;    /* orig keyboard settings   */
+        -:  154:	struct termios new_kbd_mode;
+        -:  155:
+    #####:  156:	if (tcgetattr (0, &old_kbd_mode)) { /* save orig settings   */
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  157:		fprintf (stderr, "%s() error: tcgetattr failed.\n", __func__);
+call    0 never executed
+    #####:  158:		return -1;
+        -:  159:	}   /* copy old to new */
+    #####:  160:	memcpy (&new_kbd_mode, &old_kbd_mode, sizeof(struct termios));
+        -:  161:
+    #####:  162:	new_kbd_mode.c_lflag &= ~(ICANON | ECHO);  /* new kbd flags */
+    #####:  163:	new_kbd_mode.c_cc[VTIME] = 0;
+    #####:  164:	new_kbd_mode.c_cc[VMIN] = 1;
+    #####:  165:	if (tcsetattr (0, TCSANOW, &new_kbd_mode))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  166:       	{
+    #####:  167:		fprintf (stderr, "%s() error: tcsetattr failed.\n", __func__);
+call    0 never executed
+    #####:  168:		return -1;
+        -:  169:	}
+        -:  170:
+        -:  171:	/* read chars from fp, mask if valid char specified */
+    #####:  172:	while (((c = fgetc (fp)) != '\n' && c != EOF && idx < sz - 1) || (idx == sz - 1 && c == 127))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+        -:  173:	{
+    #####:  174:		if (c != 127) {
+branch  0 never executed
+branch  1 never executed
+    #####:  175:			if (31 < mask && mask < 127)    /* valid ascii char */
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  176:				fputc (mask, stdout);
+call    0 never executed
+    #####:  177:			(*pw)[idx++] = c;
+        -:  178:		}
+    #####:  179:		else if (idx > 0) {         /* handle backspace (del)   */
+branch  0 never executed
+branch  1 never executed
+    #####:  180:			if (31 < mask && mask < 127) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  181:				fputc (0x8, stdout);
+call    0 never executed
+    #####:  182:				fputc (' ', stdout);
+call    0 never executed
+    #####:  183:				fputc (0x8, stdout);
+call    0 never executed
+        -:  184:			}
+    #####:  185:			(*pw)[--idx] = 0;
+        -:  186:		}
+        -:  187:	}
+    #####:  188:	(*pw)[idx] = 0;   
+        -:  189:
+        -:  190:	/* reset original keyboard  */
+    #####:  191:	if (tcsetattr (0, TCSANOW, &old_kbd_mode)) 
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  192:	{
+    #####:  193:		fprintf (stderr, "%s() error: tcsetattr failed.\n", __func__);
+call    0 never executed
+    #####:  194:		return -1;
+        -:  195:	}
+        -:  196:
+    #####:  197:	if (idx == sz-1 && c!='\n') /* warn if pw truncated */
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  198:		fprintf (stderr, " (%s() warning: truncated at %zu chars.)\n", __func__, sz - 1);
+call    0 never executed
+        -:  199:
+    #####:  200:	return idx; /* number of chars in passwd    */
+        -:  201:}
+        -:  202:
+function check_Password called 0 returned 0% blocks executed 0%
+    #####:  203:int check_Password()
+        -:  204:{
+    #####:  205:	char pw[MAXPW]={0};
+    #####:  206:	char *p=pw;
+    #####:  207:	FILE *fp=stdin;
+    #####:  208:	ssize_t nchr=0;
+    #####:  209:	nchr=getpasswd(&p,MAXPW,'*',fp);
+call    0 never executed
+    #####:  210:	printf("\n Enter password:");
+call    0 never executed
+    #####:  211:	nchr=getpasswd(&p,MAXPW,'*',fp);
+call    0 never executed
+    #####:  212:	if(strcmp(p,"Auction@")==0 || strcmp(p, "abc")==0)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  213:	{
+    #####:  214:		return 0;
+        -:  215:	}
+        -:  216:	else
+        -:  217:	{
+    #####:  218:		return 1;
+        -:  219:	}
+        -:  220:}

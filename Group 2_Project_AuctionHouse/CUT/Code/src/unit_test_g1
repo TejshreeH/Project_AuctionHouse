@@ -1,0 +1,24 @@
+
+
+     CUnit - A unit testing framework for C - Version 2.1-3
+     http://cunit.sourceforge.net/
+
+There are no items to show :
+ITEM CODE          ITEM NAME          ITEM PRICE
+There are no items to show :
+ITEM CODE          ITEM NAME          ITEM PRICE
+
+Suite Basic_Test_Suite1, Test 
+
+……… Testing Display item function……..
+
+ had failures:
+    1. unit_test.c:24  - display_item()==0
+    2. unit_test.c:25  - display_item()==0
+
+Run Summary:    Type  Total    Ran Passed Failed Inactive
+              suites      1      1    n/a      0        0
+               tests      2      2      1      1        0
+             asserts      4      4      2      2      n/a
+
+Elapsed time =    0.000 seconds

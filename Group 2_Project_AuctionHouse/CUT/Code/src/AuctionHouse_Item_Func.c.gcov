@@ -1,0 +1,294 @@
+        -:    0:Source:AuctionHouse_Item_Func.c
+        -:    0:Graph:Auction_main.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#include<stdio.h>
+        -:    2:#include<time.h>
+        -:    3:#include<string.h>
+        -:    4:#include<stdlib.h>
+        -:    5:#include "auctionheader.h"
+        -:    6:
+        -:    7:/****************************add_item() Adds Item details to the Item_to_be_auctioned file**************************/
+        -:    8:
+function add_item called 0 returned 0% blocks executed 0%
+    #####:    9:int add_item()
+        -:   10:{
+    #####:   11:	item_new=(it*)malloc(sizeof(it));
+        -:   12:	while(1)
+        -:   13:	{
+    #####:   14:		printf("\nEnter item code(Code should be in the range 100 to 200):\n");
+call    0 never executed
+    #####:   15:		scanf("%d",&item_new->item_code);
+call    0 never executed
+    #####:   16:		if(item_new->item_code <100 || item_new->item_code >200)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:   17:		{
+    #####:   18:			printf("Out of range");
+call    0 never executed
+    #####:   19:			continue;
+        -:   20:		}
+        -:   21:		else
+        -:   22:		{
+        -:   23:			it *ptr;
+    #####:   24:			for(ptr=start;(ptr) && ptr -> item_code!=item_new->item_code;ptr= ptr->next);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   25:			if (ptr)
+branch  0 never executed
+branch  1 never executed
+        -:   26:			{
+    #####:   27:				printf("\n %d Item code already exists. Enter another item code",item_new->item_code);
+call    0 never executed
+    #####:   28:				continue;
+        -:   29:			}
+        -:   30:			else
+    #####:   31:				break;
+        -:   32:		}		
+        -:   33:	}
+        -:   34:	while(1)
+    #####:   35:	{
+    #####:   36:		printf("Enter item name:\n");
+call    0 never executed
+    #####:   37:		scanf("%s",item_new->item_name);
+call    0 never executed
+    #####:   38:		int len=strlen(item_new->item_name);
+    #####:   39:		if(len<5 || len>19)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:   40:		{
+    #####:   41:			printf("Invalid.And length should be in range 5-19\n");
+call    0 never executed
+    #####:   42:			continue;
+        -:   43:		}
+    #####:   44:		int flag=0;
+    #####:   45:		for(int i=0;item_new->item_name[i]!='\0';i++)
+branch  0 never executed
+branch  1 never executed
+        -:   46:		{
+    #####:   47:			if(!isalpha(item_new->item_name[i]))
+branch  0 never executed
+branch  1 never executed
+        -:   48:			{
+    #####:   49:				flag=1;
+    #####:   50:				break;
+        -:   51:			}
+        -:   52:		}
+    #####:   53:		if(flag==1)
+branch  0 never executed
+branch  1 never executed
+        -:   54:		{
+    #####:   55:			printf("Name should have only alphabets\n");
+call    0 never executed
+    #####:   56:			continue;
+        -:   57:		}
+        -:   58:		else
+    #####:   59:			break;
+        -:   60:	}
+        -:   61:	while(1)
+        -:   62:	{
+    #####:   63:		printf("Enter Base price of item:\n");
+call    0 never executed
+    #####:   64:		scanf("%lf",&item_new->item_price);
+call    0 never executed
+    #####:   65:		if(item_new->item_price < 100)
+branch  0 never executed
+branch  1 never executed
+        -:   66:		{
+    #####:   67:			printf("\nMinimum price of item should be 100 Rs.\n");
+call    0 never executed
+        -:   68:		}
+        -:   69:		else
+    #####:   70:			break;
+        -:   71:	}
+    #####:   72:	if(start==NULL)
+branch  0 never executed
+branch  1 never executed
+        -:   73:	{
+    #####:   74:		start=item_new;
+    #####:   75:		item_new->next=NULL;
+        -:   76:	}
+    #####:   77:	else if(item_new->item_code<start->item_code)
+branch  0 never executed
+branch  1 never executed
+        -:   78:	{
+    #####:   79:		item_new->next=start;
+    #####:   80:		start=item_new;
+        -:   81:	}
+        -:   82:	else
+        -:   83:	{ 
+    #####:   84:		for(ptr=start;(ptr)&&ptr->item_code<item_new->item_code;prev=ptr,ptr=ptr->next);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   85:		prev->next=item_new;
+    #####:   86:		item_new->next=ptr;
+        -:   87:	}
+    #####:   88:}
+        -:   89:
+        -:   90:
+        -:   91:
+        -:   92:/*************************************edit_item() Edit Item details from the Item_to_be_auctioned file********************************************/
+        -:   93:
+function edit_item called 0 returned 0% blocks executed 0%
+    #####:   94:int edit_item()
+        -:   95:{
+        -:   96:
+    #####:   97:	if(!start)
+branch  0 never executed
+branch  1 never executed
+        -:   98:	{
+    #####:   99:		printf(" There are no items to dsiplay");
+call    0 never executed
+    #####:  100:		return(1);
+        -:  101:	}
+        -:  102:	int menu;
+    #####:  103:	printf("Enter item code:\n");
+call    0 never executed
+    #####:  104:	scanf("%d",&menu);
+call    0 never executed
+    #####:  105:	for(ptr=start;(ptr) && (ptr->item_code !=menu);ptr=ptr->next);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  106:	if(ptr==NULL)
+branch  0 never executed
+branch  1 never executed
+        -:  107:	{
+    #####:  108:		printf("\n %d Item_code is not found",menu);
+call    0 never executed
+    #####:  109:		return(1);
+        -:  110:	}
+    #####:  111:	printf("\n\tOld item name is %s and base price is %lf",ptr->item_name,ptr->item_price);
+call    0 never executed
+    #####:  112:	printf("\n\tEnter new item name and base price :\n");
+call    0 never executed
+    #####:  113:	scanf("%s %lf",ptr->item_name,&ptr->item_price);
+call    0 never executed
+        -:  114:
+    #####:  115:}
+        -:  116:
+        -:  117:
+        -:  118:
+        -:  119:/*************************************del_item() Deletes Item details from the Item_to_be_auctioned file******************************************/
+        -:  120:
+function del_item called 0 returned 0% blocks executed 0%
+    #####:  121:int del_item()
+        -:  122:{
+    #####:  123:	if(!start)
+branch  0 never executed
+branch  1 never executed
+        -:  124:	{
+    #####:  125:		printf("\n\t No items to show\n");
+call    0 never executed
+    #####:  126:		return(1);
+        -:  127:	}
+        -:  128:	int menu;
+    #####:  129:	printf("\n\tEnter the item code:");
+call    0 never executed
+    #####:  130:	scanf("%d",&menu);
+call    0 never executed
+    #####:  131:	if(menu==start->item_code)
+branch  0 never executed
+branch  1 never executed
+        -:  132:	{
+    #####:  133:		ptr=start;
+    #####:  134:		start=start->next;
+    #####:  135:		free(ptr);
+        -:  136:	}
+        -:  137:	else
+        -:  138:	{
+    #####:  139:		for(ptr=start;(ptr) && ptr->item_code!=menu;prev=ptr,ptr=ptr->next);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  140:		if(ptr==NULL)
+branch  0 never executed
+branch  1 never executed
+        -:  141:		{
+    #####:  142:			printf("\n\tItem ccode not found:");
+call    0 never executed
+    #####:  143:			return(1);
+        -:  144:		}
+    #####:  145:		prev->next=ptr->next;
+    #####:  146:		free(ptr);
+        -:  147:	}
+    #####:  148:}
+        -:  149:
+        -:  150:
+        -:  151:/*************************************view_item() Displays Item details from the Item_to_be_auctioned file****************************************/
+        -:  152:
+function view_item called 0 returned 0% blocks executed 0%
+    #####:  153:int view_item()
+        -:  154:{
+    #####:  155:	if(start)
+branch  0 never executed
+branch  1 never executed
+        -:  156:	{
+    #####:  157:		printf("\n\tITEM CODE             ITEM  NAME         ITEM BASE PRICE\n");
+call    0 never executed
+    #####:  158:		for(it *ptr = start; (ptr); ptr=ptr->next)
+branch  0 never executed
+branch  1 never executed
+        -:  159:		{
+    #####:  160:			printf("\n\t   %d        %15s                %5.2lf \n",ptr->item_code,ptr->item_name,ptr->item_price);
+call    0 never executed
+        -:  161:		}
+        -:  162:	}
+        -:  163:	else
+        -:  164:	{
+    #####:  165:		printf("\n\tNo items are not in the list to show \n");
+call    0 never executed
+    #####:  166:		return(1);
+        -:  167:	}
+    #####:  168:}
+        -:  169:/*************************************view_item() Displays Item details from the Item_to_be_auctioned file****************************************/
+        -:  170:
+function display_item called 0 returned 0% blocks executed 0%
+    #####:  171:int display_item(void)
+        -:  172:{
+        -:  173:
+    #####:  174:	srand(time(0));
+call    0 never executed
+call    1 never executed
+        -:  175:	int num;
+    #####:  176:	int lower = 100, upper = 110, count=5;
+    #####:  177:	if(!start)
+branch  0 never executed
+branch  1 never executed
+        -:  178:	{
+    #####:  179:		printf("\n\tThere are no items to display.\n");
+call    0 never executed
+        -:  180:	}
+    #####:  181:	printf("ITEM CODE          ITEM NAME          ITEM PRICE\n");
+call    0 never executed
+    #####:  182:	for(int i=0;i<count;i++)
+branch  0 never executed
+branch  1 never executed
+        -:  183:	{		 
+    #####:  184:		num=(rand() % ( upper - lower + 1))+lower;
+call    0 never executed
+        -:  185:		it *ptr;
+    #####:  186:		for(ptr=start;(ptr) && ptr->item_code!=num;ptr=ptr->next);
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:  187:		if(ptr)
+branch  0 never executed
+branch  1 never executed
+        -:  188:		{
+    #####:  189:			printf("\n%d             %s              %lf\n",ptr->item_code,ptr->item_name,ptr->item_price);
+call    0 never executed
+        -:  190:		}
+        -:  191:	}
+    #####:  192:}
